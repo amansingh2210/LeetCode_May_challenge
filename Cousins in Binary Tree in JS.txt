@@ -1,0 +1,45 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} x
+ * @param {number} y
+ * @return {boolean}
+ */
+let map = new Map();
+var isCousins = function(root, x, y) {
+    transverse(root,0,x,y,null);
+    let value1 = map.get(x);
+    let value2 = map.get(y);
+    if(!(map.has(x)&&map.has(y))){
+       return false;
+    }
+    if(value1.parent===null||value2.parent===null){
+        return false;
+    }
+    if((value1.parent!=value2.parent)&&(value1.depth==value2.depth)){
+        return true;
+    }else{
+       return false;
+    }
+};
+function transverse(treeNode,depth,x,y,parent){
+    map.set(treeNode.val,{parent:parent,depth:depth});
+    if(treeNode.val===x||treeNode.val===y||treeNode.value===null){
+        return
+    }
+    
+    if(treeNode.left!=null){
+         transverse(treeNode.left,depth+1,x,y,treeNode.val);
+    }
+    if(treeNode.right!=null){
+         transverse(treeNode.right,depth+1,x,y,treeNode.val);
+    }
+   
+}
