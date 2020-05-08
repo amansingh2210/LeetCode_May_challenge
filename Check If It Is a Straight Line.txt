@@ -1,0 +1,26 @@
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        
+        
+        //if two points then sure straight line
+        if(coordinates.length==2){
+            return true;
+        }
+        else{
+            /*
+            for three points cross product must be zero  i.e (x2−x1)(y3−y1)−(y2−y1)(x3−x1)=0
+            point 1 (x1,y1) and (x2,y2) are fixed we need to choic points from array and find cross point 
+            with point 1 and point 2 if value is not equal to zero return false if all points retuen 
+            zero as cross product then return true;
+            */
+            for(int i=0;i<coordinates.length;i++){
+                int value = (((coordinates[1][0]-coordinates[0][0])*(coordinates[i][1]-coordinates[0][1]))
+                    -((coordinates[1][1]-coordinates[0][1])*(coordinates[i][0]-coordinates[0][0])));
+                if(value!=0)
+                    return false;
+            }
+            return true;
+        }
+        
+    }
+}
