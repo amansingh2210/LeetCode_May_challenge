@@ -1,0 +1,23 @@
+class Solution {
+    public int findJudge(int N, int[][] trust) {
+        int judge = 1;
+        int[] arrayOfCounts = new int[N+1]; 
+        for(int i=0;i<trust.length;i++){
+            arrayOfCounts[trust[i][0]]=-1;
+            if(arrayOfCounts[trust[i][0]]==-1){
+                if(judge==trust[i][0])
+                    judge = -1;
+            }
+            if(arrayOfCounts[trust[i][1]]!=-1){
+                arrayOfCounts[trust[i][1]]+=1;
+                 if(arrayOfCounts[trust[i][1]]==N-1){
+                    judge = trust[i][1];
+                 }
+            }else{
+                if(judge==trust[i][1])
+                    judge = -1;
+            }
+        }
+        return judge;
+    }
+}
